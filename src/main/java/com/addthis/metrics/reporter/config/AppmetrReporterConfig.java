@@ -24,6 +24,13 @@ import javax.validation.constraints.NotNull;
 
 public class AppmetrReporterConfig extends AbstractReporterConfig
 {
+
+    @NotNull
+    private String deployToken;
+
+    @NotNull
+    private String apiUrl;
+
     private static final Logger log = LoggerFactory.getLogger(AppmetrReporterConfig.class);
 
     public String getDeployToken() {
@@ -41,13 +48,6 @@ public class AppmetrReporterConfig extends AbstractReporterConfig
     public void setApiUrl(String apiUrl) {
         this.apiUrl = apiUrl;
     }
-
-    @NotNull
-    private String deployToken;
-
-    @NotNull
-    private String apiUrl;
-
 
     @Override
     public boolean enable()
