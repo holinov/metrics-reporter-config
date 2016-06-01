@@ -26,6 +26,22 @@ public class AppmetrReporterConfig extends AbstractReporterConfig
 {
     private static final Logger log = LoggerFactory.getLogger(AppmetrReporterConfig.class);
 
+    public String getDeployToken() {
+        return deployToken;
+    }
+
+    public void setDeployToken(String deployToken) {
+        this.deployToken = deployToken;
+    }
+
+    public String getApiUrl() {
+        return apiUrl;
+    }
+
+    public void setApiUrl(String apiUrl) {
+        this.apiUrl = apiUrl;
+    }
+
     @NotNull
     private String deployToken;
 
