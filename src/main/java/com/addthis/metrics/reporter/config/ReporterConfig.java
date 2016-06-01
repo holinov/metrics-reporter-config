@@ -52,6 +52,8 @@ public class ReporterConfig
     private List<GangliaReporterConfig> ganglia;
     @Valid
     private List<GraphiteReporterConfig> graphite;
+    @Valid
+    private List<AppmetrReporterConfig> appmetr;
 
     public List<ConsoleReporterConfig> getConsole()
     {
@@ -107,6 +109,24 @@ public class ReporterConfig
         for (ConsoleReporterConfig consoleConfig : console)
         {
             if (!consoleConfig.enable())
+            {
+                failures = true;
+            }
+        }
+        return !failures;
+    }
+
+    public boolean enableAppmetr()
+    {
+        boolean failures = false;
+        if (appmetr == null)
+        {
+            log.debug("Asked to enable Appmetr, but it was not configured");
+            return false;
+        }
+        for (AppmetrReporterConfig appmetrReporterConfig : appmetr)
+        {
+            if (!appmetrReporterConfig.enable())
             {
                 failures = true;
             }
@@ -253,6 +273,14 @@ public class ReporterConfig
             log.error("Failed to validate: {}", errors);
             return false;
         }
+    }
+
+    public List<AppmetrReporterConfig> getAppmetr() {
+        return appmetr;
+    }
+
+    public void setAppmetr(List<AppmetrReporterConfig> appmetr) {
+        this.appmetr = appmetr;
     }
 
     public static class ReporterConfigurationException extends RuntimeException
