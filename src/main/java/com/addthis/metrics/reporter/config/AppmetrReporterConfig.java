@@ -24,38 +24,37 @@ import javax.validation.constraints.NotNull;
 
 public class AppmetrReporterConfig extends AbstractReporterConfig
 {
+    @NotNull
+    private String token;
 
     @NotNull
-    private String deployToken;
+    private String url;
 
-    @NotNull
-    private String apiUrl;
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     private static final Logger log = LoggerFactory.getLogger(AppmetrReporterConfig.class);
-
-    public String getDeployToken() {
-        return deployToken;
-    }
-
-    public void setDeployToken(String deployToken) {
-        this.deployToken = deployToken;
-    }
-
-    public String getApiUrl() {
-        return apiUrl;
-    }
-
-    public void setApiUrl(String apiUrl) {
-        this.apiUrl = apiUrl;
-    }
 
     @Override
     public boolean enable()
     {
-        log.info("Enabling AppMetrReporter to "+apiUrl+" with deployToken "+deployToken);
+        log.info("Enabling AppMetrReporter to "+getUrl()+" with deployToken "+getToken());
         try
         {
-            final AppmetrReporter appmetrReporter = new AppmetrReporter(deployToken, apiUrl, getMetricPredicate());
+            final AppmetrReporter appmetrReporter = new AppmetrReporter(getToken(), getUrl(), getMetricPredicate());
             appmetrReporter.start(getPeriod(),getRealTimeunit());
         }
         catch (Exception e)

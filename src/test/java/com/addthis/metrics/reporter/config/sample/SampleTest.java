@@ -129,4 +129,13 @@ public class SampleTest
         runLoop(config);
     }
 
+
+    @Test
+    public void sampleAppmetr() throws Exception
+    {
+        ReporterConfig config = ReporterConfig.loadFromFile("src/test/resources/sample/appmetr.yaml");
+        System.out.println(yaml.dump(config));
+        log.info("Sample AppMetr Reporter");
+        runLoop(config);
+    }
 }

@@ -1,0 +1,18 @@
+appmetr:
+  - 
+    token: "83b0ac-dc44-4a99-83b7-9b83f184a242"
+    url: "http://appmetr.com/api"
+    period: 60
+    timeunit: 'SECONDS'
+    predicate:
+      color: "white"
+      useQualifiedName: true
+      patterns:
+        - "^org.apache.cassandra.metrics.Cache.+"
+        - "^org.apache.cassandra.metrics.ClientRequest.+" # includes ClientRequestMetrics
+        - "^org.apache.cassandra.metrics.CommitLog.+"
+        - "^org.apache.cassandra.metrics.Compaction.+"
+        - "^org.apache.cassandra.metrics.DroppedMetrics.+"
+        - "^org.apache.cassandra.metrics.ReadRepair.+"
+        - "^org.apache.cassandra.metrics.Storage.+"
+        - "^org.apache.cassandra.metrics.ThreadPools.+"
