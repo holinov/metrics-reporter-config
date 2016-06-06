@@ -220,6 +220,13 @@ public class ReporterConfig
                 enabled = true;
             }
         }
+        if (appmetr != null)
+        {
+            if (enableAppmetr())
+            {
+                enabled = true;
+            }
+        }
         if (!enabled)
         {
             log.warn("No reporters were succesfully enabled");
